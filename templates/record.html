@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card">
+  <div class="card-header"><strong>
+    	{{ zapis_korisnika.ime }} 
+		{{ zapis_korisnika.prezime }}</strong>
+  </div>
+  <div class="card-body">
+
+
+<p class="card-text">
+<strong>Email: </strong>{{ zapis_korisnika.email }}</p>
+
+<p class="card-text">
+<strong>Broj Telefona: </strong>{{ zapis_korisnika.broj_telefona }}
+</p>
+
+<p class="card-text">
+<strong>Adresa: </strong>{{ zapis_korisnika.adresa }}</p>
+
+<p class="card-text">
+<strong>Grad: </strong>{{ zapis_korisnika.grad }}</p>
+
+<p class="card-text">
+<strong>Postanski broj: </strong>{{ zapis_korisnika.postanski_broj }}</p>
+
+<p class="card-text">
+<strong>Vreme dodavanja: </strong>{{ zapis_korisnika.vreme_dodavanja }}</p>
+
+<p class="card-text">
+<strong>ID: </strong>{{ zapis_korisnika.id }}</p>
+    
+    
+  </div>
+</div>
+
+<br/>
+<br/>
+
+<a href="{% url 'home' %}" class="btn btn-secondary">Nazad</a>
+
+<a href="{% url 'update_record' zapis_korisnika.id %}" class="btn btn-secondary">Izmeni</a>
+
+<a href="{% url 'delete_record' zapis_korisnika.id %}" class="btn btn-danger">Obrisi</a>
+
+{% endblock %}

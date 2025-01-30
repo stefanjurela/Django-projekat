@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+{% if user.is_authenticated %}
+
+
+<table class="table table-striped table-hover table-bordered">
+  <thead class="table-warning">
+    <tr>
+      <th scope="col">Ime</th>
+      <th scope="col">Prezime</th>
+      <th scope="col">Broj telefona</th>
+      <th scope="col">Adresa</th>
+      <th scope="col">Grad</th>
+      <th scope="col">Postanski broj</th>
+      <th scope="col">Vreme dodavanja</th>
+      <th scope="col">ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+{% if records %}
+	{% for record in records %}
+		<tr>
+			<td>{{ record.ime }} {{ record.prezime }}</td>
+			<td>{{ record.email }}</td>
+			<td>{{ record.broj_telefona }}</td>
+			<td>{{ record.adresa }}</td>
+			<td>{{ record.grad }}</td>
+			<td>{{ record.postanski_broj }}</td>
+			<td>{{ record.vreme_dodavanja }}</td>
+			<td><a href="{% url 'record' record.id %}">{{ record.id }}</a></td>
+		</tr>
+	{% endfor %}
+
+{% endif %}
+
+	
+	  </tbody>
+	</table>
+
+{% else %}
+<div class="col-md-6 offset-md-3">
+<h1>Uloguj se</h1>
+<br/>
+<form method="POST" action="{% url 'home' %}">
+    {% csrf_token %}
+        <div class="mb-3">
+            <input type="text" class="form-control" name="username", placeholder="Username" required>
+        </div>
+        <br/>
+        <div class="mb-3">
+          <input type="password" class="form-control" name="password", placeholder="Password" required>
+        </div>
+        <br/>
+        <button type="submit" class="btn btn-secondary">Uloguj se</button>
+      </form>
+
+</form>
+</div>
+
+{% endif %}
+
+{% endblock %}
